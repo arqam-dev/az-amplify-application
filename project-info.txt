@@ -16,5 +16,12 @@ Angular: 12.2.17
 2. ng new az-amplify-application
 3. updated polyfills.ts
 4. amplify configure - Will create a IAM user having accessKey and secretKey.
-5. amplify init - will create amplify app using above IAM user. Create schema.graphql file.
-6. amplify push - will create api.service.ts file, AppSync api on the console.
+5. amplify init - will create amplify app (Local + AWS Console) using above IAM user. backend folder with cloud formation.
+6. amplify add api -  Create schema.graphql file. connect AppSync to it. (Schema will be added locally whoich will create the table when we push it)
+6. amplify push - will create api.service.ts file, AppSync api on the console. Create table in dynamo db on console.
+    --> Mistakenly deleted the tables from console. So, done the following steps again to go to the previous state.
+        -> amplify delete
+        -> amplify init
+        -> amplify add api
+        -> amplify push
+7. 
