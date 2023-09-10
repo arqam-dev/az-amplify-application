@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "azamplifyapplication",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/tk-lpt-0864/Documents/az-amplify-application/az-amplify-application/amplify/backend/api/azamplifyapplication/schema.graphql",
+    "defaultAuthType": {
+      "mode": "API_KEY",
+      "expirationTime": 7
+    }
+  }
+}
