@@ -24,4 +24,11 @@ Angular: 12.2.17
         -> amplify init
         -> amplify add api
         -> amplify push
-7. 
+7. Replaced the ToDo schema with Restaurant schema and done amplify push again. 
+    -> (it should be replaced after adding the api so that no need to push it again) 
+    -> Command: amplify push --allow-destructive-graphql-schema-updates // used this flag as needed to del the ToDo table.
+
+8. Updated:
+    -> src/main.ts with the given code on https://docs.amplify.aws/ in "Connect frontend to API" section.
+    -> tsconfig.app.json
+    -> renamed the aws-exports.js to ".ts"

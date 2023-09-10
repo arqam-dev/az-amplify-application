@@ -10,23 +10,25 @@ export interface SubscriptionResponse<T> {
 }
 
 export type __SubscriptionContainer = {
-  onCreateTodo: OnCreateTodoSubscription;
-  onUpdateTodo: OnUpdateTodoSubscription;
-  onDeleteTodo: OnDeleteTodoSubscription;
+  onCreateRestaurant: OnCreateRestaurantSubscription;
+  onUpdateRestaurant: OnUpdateRestaurantSubscription;
+  onDeleteRestaurant: OnDeleteRestaurantSubscription;
 };
 
-export type CreateTodoInput = {
+export type CreateRestaurantInput = {
   id?: string | null;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
 };
 
-export type ModelTodoConditionInput = {
+export type ModelRestaurantConditionInput = {
   name?: ModelStringInput | null;
   description?: ModelStringInput | null;
-  and?: Array<ModelTodoConditionInput | null> | null;
-  or?: Array<ModelTodoConditionInput | null> | null;
-  not?: ModelTodoConditionInput | null;
+  city?: ModelStringInput | null;
+  and?: Array<ModelRestaurantConditionInput | null> | null;
+  or?: Array<ModelRestaurantConditionInput | null> | null;
+  not?: ModelRestaurantConditionInput | null;
 };
 
 export type ModelStringInput = {
@@ -68,32 +70,35 @@ export type ModelSizeInput = {
   between?: Array<number | null> | null;
 };
 
-export type Todo = {
-  __typename: "Todo";
+export type Restaurant = {
+  __typename: "Restaurant";
   id: string;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type UpdateTodoInput = {
+export type UpdateRestaurantInput = {
   id: string;
   name?: string | null;
   description?: string | null;
+  city?: string | null;
 };
 
-export type DeleteTodoInput = {
+export type DeleteRestaurantInput = {
   id: string;
 };
 
-export type ModelTodoFilterInput = {
+export type ModelRestaurantFilterInput = {
   id?: ModelIDInput | null;
   name?: ModelStringInput | null;
   description?: ModelStringInput | null;
-  and?: Array<ModelTodoFilterInput | null> | null;
-  or?: Array<ModelTodoFilterInput | null> | null;
-  not?: ModelTodoFilterInput | null;
+  city?: ModelStringInput | null;
+  and?: Array<ModelRestaurantFilterInput | null> | null;
+  or?: Array<ModelRestaurantFilterInput | null> | null;
+  not?: ModelRestaurantFilterInput | null;
 };
 
 export type ModelIDInput = {
@@ -112,84 +117,92 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null;
 };
 
-export type ModelTodoConnection = {
-  __typename: "ModelTodoConnection";
-  items: Array<Todo | null>;
+export type ModelRestaurantConnection = {
+  __typename: "ModelRestaurantConnection";
+  items: Array<Restaurant | null>;
   nextToken?: string | null;
 };
 
-export type CreateTodoMutation = {
-  __typename: "Todo";
+export type CreateRestaurantMutation = {
+  __typename: "Restaurant";
   id: string;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type UpdateTodoMutation = {
-  __typename: "Todo";
+export type UpdateRestaurantMutation = {
+  __typename: "Restaurant";
   id: string;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type DeleteTodoMutation = {
-  __typename: "Todo";
+export type DeleteRestaurantMutation = {
+  __typename: "Restaurant";
   id: string;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type GetTodoQuery = {
-  __typename: "Todo";
+export type GetRestaurantQuery = {
+  __typename: "Restaurant";
   id: string;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type ListTodosQuery = {
-  __typename: "ModelTodoConnection";
+export type ListRestaurantsQuery = {
+  __typename: "ModelRestaurantConnection";
   items: Array<{
-    __typename: "Todo";
+    __typename: "Restaurant";
     id: string;
     name: string;
-    description?: string | null;
+    description: string;
+    city: string;
     createdAt: string;
     updatedAt: string;
   } | null>;
   nextToken?: string | null;
 };
 
-export type OnCreateTodoSubscription = {
-  __typename: "Todo";
+export type OnCreateRestaurantSubscription = {
+  __typename: "Restaurant";
   id: string;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type OnUpdateTodoSubscription = {
-  __typename: "Todo";
+export type OnUpdateRestaurantSubscription = {
+  __typename: "Restaurant";
   id: string;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
   createdAt: string;
   updatedAt: string;
 };
 
-export type OnDeleteTodoSubscription = {
-  __typename: "Todo";
+export type OnDeleteRestaurantSubscription = {
+  __typename: "Restaurant";
   id: string;
   name: string;
-  description?: string | null;
+  description: string;
+  city: string;
   createdAt: string;
   updatedAt: string;
 };
@@ -198,16 +211,17 @@ export type OnDeleteTodoSubscription = {
   providedIn: "root"
 })
 export class APIService {
-  async CreateTodo(
-    input: CreateTodoInput,
-    condition?: ModelTodoConditionInput
-  ): Promise<CreateTodoMutation> {
-    const statement = `mutation CreateTodo($input: CreateTodoInput!, $condition: ModelTodoConditionInput) {
-        createTodo(input: $input, condition: $condition) {
+  async CreateRestaurant(
+    input: CreateRestaurantInput,
+    condition?: ModelRestaurantConditionInput
+  ): Promise<CreateRestaurantMutation> {
+    const statement = `mutation CreateRestaurant($input: CreateRestaurantInput!, $condition: ModelRestaurantConditionInput) {
+        createRestaurant(input: $input, condition: $condition) {
           __typename
           id
           name
           description
+          city
           createdAt
           updatedAt
         }
@@ -221,18 +235,19 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <CreateTodoMutation>response.data.createTodo;
+    return <CreateRestaurantMutation>response.data.createRestaurant;
   }
-  async UpdateTodo(
-    input: UpdateTodoInput,
-    condition?: ModelTodoConditionInput
-  ): Promise<UpdateTodoMutation> {
-    const statement = `mutation UpdateTodo($input: UpdateTodoInput!, $condition: ModelTodoConditionInput) {
-        updateTodo(input: $input, condition: $condition) {
+  async UpdateRestaurant(
+    input: UpdateRestaurantInput,
+    condition?: ModelRestaurantConditionInput
+  ): Promise<UpdateRestaurantMutation> {
+    const statement = `mutation UpdateRestaurant($input: UpdateRestaurantInput!, $condition: ModelRestaurantConditionInput) {
+        updateRestaurant(input: $input, condition: $condition) {
           __typename
           id
           name
           description
+          city
           createdAt
           updatedAt
         }
@@ -246,18 +261,19 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <UpdateTodoMutation>response.data.updateTodo;
+    return <UpdateRestaurantMutation>response.data.updateRestaurant;
   }
-  async DeleteTodo(
-    input: DeleteTodoInput,
-    condition?: ModelTodoConditionInput
-  ): Promise<DeleteTodoMutation> {
-    const statement = `mutation DeleteTodo($input: DeleteTodoInput!, $condition: ModelTodoConditionInput) {
-        deleteTodo(input: $input, condition: $condition) {
+  async DeleteRestaurant(
+    input: DeleteRestaurantInput,
+    condition?: ModelRestaurantConditionInput
+  ): Promise<DeleteRestaurantMutation> {
+    const statement = `mutation DeleteRestaurant($input: DeleteRestaurantInput!, $condition: ModelRestaurantConditionInput) {
+        deleteRestaurant(input: $input, condition: $condition) {
           __typename
           id
           name
           description
+          city
           createdAt
           updatedAt
         }
@@ -271,15 +287,16 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <DeleteTodoMutation>response.data.deleteTodo;
+    return <DeleteRestaurantMutation>response.data.deleteRestaurant;
   }
-  async GetTodo(id: string): Promise<GetTodoQuery> {
-    const statement = `query GetTodo($id: ID!) {
-        getTodo(id: $id) {
+  async GetRestaurant(id: string): Promise<GetRestaurantQuery> {
+    const statement = `query GetRestaurant($id: ID!) {
+        getRestaurant(id: $id) {
           __typename
           id
           name
           description
+          city
           createdAt
           updatedAt
         }
@@ -290,21 +307,22 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <GetTodoQuery>response.data.getTodo;
+    return <GetRestaurantQuery>response.data.getRestaurant;
   }
-  async ListTodos(
-    filter?: ModelTodoFilterInput,
+  async ListRestaurants(
+    filter?: ModelRestaurantFilterInput,
     limit?: number,
     nextToken?: string
-  ): Promise<ListTodosQuery> {
-    const statement = `query ListTodos($filter: ModelTodoFilterInput, $limit: Int, $nextToken: String) {
-        listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  ): Promise<ListRestaurantsQuery> {
+    const statement = `query ListRestaurants($filter: ModelRestaurantFilterInput, $limit: Int, $nextToken: String) {
+        listRestaurants(filter: $filter, limit: $limit, nextToken: $nextToken) {
           __typename
           items {
             __typename
             id
             name
             description
+            city
             createdAt
             updatedAt
           }
@@ -324,62 +342,65 @@ export class APIService {
     const response = (await API.graphql(
       graphqlOperation(statement, gqlAPIServiceArguments)
     )) as any;
-    return <ListTodosQuery>response.data.listTodos;
+    return <ListRestaurantsQuery>response.data.listRestaurants;
   }
-  OnCreateTodoListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTodo">>
+  OnCreateRestaurantListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateRestaurant">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnCreateTodo {
-        onCreateTodo {
+      `subscription OnCreateRestaurant {
+        onCreateRestaurant {
           __typename
           id
           name
           description
+          city
           createdAt
           updatedAt
         }
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateTodo">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onCreateRestaurant">>
   >;
 
-  OnUpdateTodoListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateTodo">>
+  OnUpdateRestaurantListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateRestaurant">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnUpdateTodo {
-        onUpdateTodo {
+      `subscription OnUpdateRestaurant {
+        onUpdateRestaurant {
           __typename
           id
           name
           description
+          city
           createdAt
           updatedAt
         }
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateTodo">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onUpdateRestaurant">>
   >;
 
-  OnDeleteTodoListener: Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTodo">>
+  OnDeleteRestaurantListener: Observable<
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteRestaurant">>
   > = API.graphql(
     graphqlOperation(
-      `subscription OnDeleteTodo {
-        onDeleteTodo {
+      `subscription OnDeleteRestaurant {
+        onDeleteRestaurant {
           __typename
           id
           name
           description
+          city
           createdAt
           updatedAt
         }
       }`
     )
   ) as Observable<
-    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteTodo">>
+    SubscriptionResponse<Pick<__SubscriptionContainer, "onDeleteRestaurant">>
   >;
 }

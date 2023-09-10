@@ -1,36 +1,39 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation CreateRestaurant(
+  $input: CreateRestaurantInput!
+  $condition: ModelRestaurantConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createRestaurant(input: $input, condition: $condition) {
     id
     name
     description
+    city
     createdAt
     updatedAt
   }
 }
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation UpdateRestaurant(
+  $input: UpdateRestaurantInput!
+  $condition: ModelRestaurantConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updateRestaurant(input: $input, condition: $condition) {
     id
     name
     description
+    city
     createdAt
     updatedAt
   }
 }
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
+mutation DeleteRestaurant(
+  $input: DeleteRestaurantInput!
+  $condition: ModelRestaurantConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
+  deleteRestaurant(input: $input, condition: $condition) {
     id
     name
     description
+    city
     createdAt
     updatedAt
   }
