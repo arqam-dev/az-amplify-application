@@ -20,9 +20,11 @@
     </form>
   </div>
 
-
-  <div *ngFor="let restaurant of restaurants">
+  <br><br><br><br><br><hr>
+  <h1>Restaurant Listing</h1>
+  <div *ngFor="let restaurant of restaurants" class="restaurants-listing">
     <div>{{ restaurant?.city }}</div>
     <div>{{ restaurant?.name }}</div>
     <div>{{ restaurant?.description }}</div>
+    <hr>
   </div>
