@@ -1,8 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { APIService, Restaurant } from '../API.service';
+
+// Commenting api.service to use custom api service so that we will be able to make custom queries as API.service always regenerate
+// import { APIService, Restaurant } from '../API.service';
+
+// Custom API Service File
+import { APIService, Restaurant } from '../custom-api.service';
+
 /** Subscription type will be inferred from this library */
 import { ZenObservable } from 'zen-observable-ts';
+
 @Component({
   selector: 'app-restaurants',
   templateUrl: './restaurants.component.html',
