@@ -34,3 +34,4 @@ Angular: 12.2.17
     -> renamed the aws-exports.js to ".ts"
 
 9. Updated app.module.ts and also create "restaurants" component.
+10. Added Auth - amplify add auth
